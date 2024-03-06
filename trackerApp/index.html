@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="./script.js" type="text/javascript"></script>
     <title>Task Tracker</title>
   </head>
   <body>
     <div class="container">
-      <h1>Task Tracker</h1>
+      <h1 onclick="addEventListener()">Task Tracker</h1>
       <form id="taskForm">
         <!-- Task form inputs go here -->
         <label for="taskName">Task name</label>
-        <input type="text" id="taskName" name="taskName" />
+        <input type="text" id="taskName="taskName" />
         <!-- A label and text area for task description with an id of taskDescription -->
         <label for="taskDescription">Task Description:</label>
         <textarea id="taskDescription" name="taskDescription"></textarea>
@@ -25,6 +26,6 @@
         <!-- Task table content here -->
       </table>
     </div>
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
   </body>
 </html>

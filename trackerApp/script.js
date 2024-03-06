@@ -13,10 +13,11 @@ const taskTable = null;
 
 
 document.addEventListener("DOMContentloaded", function () {
-    taskForm = document.getElementById("taskForm");
+    const taskForm = document.getElementById("taskForm").value;
     // Get the table element by its ID and assign it to taskTable
-    taskTable = document.getElementById("taskTable");
+    const taskTable = document.getElementById("taskTable").value;
     // Log the values of taskForm and taskTable to the console
     console.log("taskForm:", taskForm);
     console.log("taskTable:", taskTable);
 });
+
