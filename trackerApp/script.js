@@ -17,21 +17,23 @@ console.log(taskTable)
 // Function to handle form submissions
 function handleSubmission(event) {
     event.preventDefault();
-
-    //     // TODO: Get form input values  task description and task deadline input.
+    //   TODO: Get form input values  task description and task deadline input.
     let taskName = document.getElementById('taskName').value
     let taskDescription = document.getElementById('taskDescription').value
     let taskDeadline = document.getElementById('taskDeadline').value
     // TODO: Validate input fields
-    if (taskName == '' || taskDeadline == '') {
+    if (!taskName || !taskDeadline) {
         alert("Task name and deadline are required!")
-    } else {
-        alert("thanks for filling the form")
+        return;
     }
+    tasks.push({
+        name: taskName,
+        description: taskDescription,
+        deadline: taskDeadline
+    });
     //     // TODO: Update the tasks array
     //     // Use the push method to add a new task to the tasks array. For example: tasks.push({ name:
     //     //     taskName, description: taskDescription, deadline: taskDeadline })
-
 
     render();
 }
@@ -60,10 +62,5 @@ function init() {
 taskForm.addEventListener('submit', handleSubmission);
 
 // // Call the init function to set up the initial state of the app
-
-function example(event) {
-    console.log(event)
-}
-
 init();
 
