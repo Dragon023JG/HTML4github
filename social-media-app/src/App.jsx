@@ -12,10 +12,11 @@ function App() {
         
         {/* Feed */}
         
-        <Post/>
+        <Post content="this a test post!"/>
+        <post content ="this is another test post!"/>
     
     </div>
-  )
+  );
 
 }
 
