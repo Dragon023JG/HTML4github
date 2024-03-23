@@ -14,7 +14,7 @@ function App() {
         
         <Post content="this a test post!"/>
         <post content ="this is another test post!"/>
-    
+        <post/>
     </div>
   );
 
