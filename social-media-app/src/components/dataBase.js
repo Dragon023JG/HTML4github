@@ -1,0 +1,1 @@
+export const posts = [{ title: "prueba1", content: "contenido1", likes: 2 }]

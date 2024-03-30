@@ -9,7 +9,9 @@ function Post(props){
      
     }
   return(
-    <div>
+    <div className='post-container'>
+      <h1>{props.title}</h1>
+
      <h3>{props.content}</h3>
       <p>Likes: {likes}</p>
       <button onClick={handleLike}>like</button>
