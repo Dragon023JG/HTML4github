@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { posts } from './dataBase';
  
-function CreatePostForm() {
+function CreatePostForm({onNewPost}) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
    
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implement logic to create new post with title and content
-    console.log('Title:', title);
-    console.log('Content:', content);
-    posts.push({title,content});
-    console.log(posts);
+    const newPost ={title,content, likes:0, comments:[]};
+    onNewPost(newPost);
     // Clear form fields after submission
     setTitle('');
     setContent('');

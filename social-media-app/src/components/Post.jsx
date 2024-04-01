@@ -16,9 +16,9 @@ function Post(props){
       <p>Likes: {likes}</p>
       <button onClick={handleLike}>like</button>
       <p>Comments:</p>
-      <Comment content="this a test comment!"/>
-      <Comment content="this another test comment!"/>
-      <Comment content="this is yet another test comment!"/>
+      <Comment content="Jhon: awesome!"/>
+      <Comment content="George: nice!"/>
+      <Comment content="Chris: I like it!"/>
     </div>
   )
 }

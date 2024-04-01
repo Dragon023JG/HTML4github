@@ -1,7 +1,10 @@
 import React from 'react';
 import Post from './Post'; // Import the Post component\
-import { posts } from './dataBase';
-function Feed( ) {
+function Feed( {posts} ) {
+  if (!Array.isArray(posts)) {
+    console.error("`posts` is not an array:", posts);
+    return null; 
+  }
   return (
     <div className="feed">
       {posts.map((post, index) => (
