@@ -1,1 +1,1 @@
-export const posts = [{ title: "prueba1", content: "contenido1", likes: 0 }]
+export const posts = [{ title: "post 1", content: "content 1", likes: 0 }]

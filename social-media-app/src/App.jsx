@@ -4,7 +4,7 @@ import CreatePostForm from './components/CreatePostForm'
 import Feed from './components/Feed'
 import './App.css'
 function App() {
-  const [allPosts, setAllPosts] =useState( [{ title: "prueba1", content: "contenido1", likes: 0 }]);
+  const [allPosts, setAllPosts] =useState( [{ title: " First post :)", content: "content: new image",}]);
 
   const addNewPost = (newPost) => {
     setAllPosts([...allPosts, newPost]);
