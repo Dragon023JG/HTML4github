@@ -16,11 +16,13 @@ export default function Root() {
   const{contacts,q}= useLoaderData();
   const navigation=useNavigation();
   const submit = useSubmit();
+
   const searching =
     navigation.location &&
     new URLSearchParams(navigation.location.search).has(
       "q"
     );
+
 
   useEffect(() =>{
     document.getElementById("q").value =q;
@@ -41,7 +43,10 @@ export default function Root() {
                 name="q"
                 defaultValue={q}
                 onChange={(event)=>{
-                  submit(event.currentTarget.form);
+                  const isFirstSearch = q == null;
+                  submit(event.currentTarget.form,{ 
+                    replace: !isFirstSearch,
+                  });
                 }}
               />
               <div
