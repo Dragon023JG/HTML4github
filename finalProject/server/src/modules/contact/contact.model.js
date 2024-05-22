@@ -1,34 +1,47 @@
 'use strict';
-const mongoose = require( 'mongoose' );
-const { Schema } = require( 'mongoose' );
-const uniqueValidator = require( 'mongoose-unique-validator' );
+const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 class Contact {
 
     initSchema() {
-        const schema = new Schema( {
-            'title': {
+        const schema = new Schema({
+            'first': {
                 'type': String,
                 'required': true,
             },
-            'content': {
+            'last': {
                 'type': String,
                 'required': true,
             },
-            'createdBy': {
-                'type': Schema.Types.ObjectId,
-                'ref': 'user'
+            // 'createdBy': {
+            //     'type': Schema.Types.ObjectId,
+            //     'ref': 'user'
+            // },
+            // 'updatedBy': {
+            //     'type': Schema.Types.ObjectId,
+            //     'ref': 'user'
+            // }
+            'twitter': {
+                'type': String,
+                'required': true,
             },
-            'updatedBy': {
-                'type': Schema.Types.ObjectId,
-                'ref': 'user'
-            }
-        }, { 'timestamps': true } );
 
-        schema.plugin( uniqueValidator );
+            'avatar': {
+                'type': String,
+                'default': 'noImage.png',
+            },
+            'notes': {
+                'type': String,
+                'required': false,
+            },
+        }, { 'timestamps': true });
+
+        schema.plugin(uniqueValidator);
         try {
-            mongoose.model( 'contact', schema );
-        } catch ( e ) {
+            mongoose.model('contact', schema);
+        } catch (e) {
 
         }
 
@@ -36,7 +49,7 @@ class Contact {
 
     getInstance() {
         this.initSchema();
-        return mongoose.model( 'contact' );
+        return mongoose.model('contact');
     }
 }
 
