@@ -7,8 +7,8 @@
   "generatorVersion": "0.2.4",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint .",
-    "start": " node index.js"
+    "lint": "eslint .",
+    "start": "npm run lint && node index.js"
   },
   "keywords": [],
   "author": "Sunil Kumar Samanta",
