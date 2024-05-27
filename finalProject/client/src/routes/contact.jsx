@@ -1,5 +1,6 @@
 import { Form, useLoaderData, useFetcher, } from "react-router-dom";
-import { getContact, updateContact } from "../contacts";
+import { getContact,getContactFromMongoByID,updateContact } from "../contacts";
+import React, { useState, useEffect } from 'react';
 
 export async function action ({request, params}){
   let formData = await request.formData();
@@ -8,20 +9,42 @@ export async function action ({request, params}){
   });
 }
 
-export async function loader({params}){
-  const contact = await getContact(params.contactId);
-  if (!contact){
-    throw new Response("",{
-      status : 404,
-      statusText: "Not Found",
-    });
+  export async function loader({params}){
+    const apiurl= "http://127.0.0.1:5001/api/contacts";
+    const contactId = params.contactId;
+    let contact ={};
+    await getContactFromMongoByID(apiurl, params.contactId).then((resp)=>{
+       console.log(resp);
+       contact= resp;
+    })
+    // const contact = await getContact(params.contactId);
+    // if (!contact){
+    //   throw new Response("",{
+    //     status : 404,
+    //     statusText: "Not Found",
+    //   });
+    // }
+    return {contact, contactId};
   }
-  return {contact};
-}
 
-export default function Contact() {
-  const {contact}= useLoaderData();
+export default async function Contact() {
+  const {contactId, contact} = useLoaderData();
+  // const [contact, setContact] = useState([]);
+  //  console.log('contactId', contactId);
 
+  // useEffect(() => {
+  //   getContactFromMongoByID(apiurl, contactId)
+  //     .then(data => {
+  //       setContact(data);
+  //       console.log('setContactdata', data)
+  //     })
+  //     .catch(error => {
+  //       console.error('Error:', error);
+  //     });
+  // }, []);
+  
+//  const {contact,contactId}= useLoaderData();
+  console.log('contactid', contact,contactId)
 
   return (
     <div id="contact">

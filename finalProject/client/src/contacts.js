@@ -1,6 +1,28 @@
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
+import axios from "axios";
+export async function getContactFromMongoByID(url, id) {
+    try {
+        const response = await axios.get(`${url}/${id}`);
+        console.log('getContactFromUrl', response);
+        return response.data.data;
+    } catch (error) {
+        console.error(`HTTP error! status: ${error.response.status}`);
+    }
+}
+
+
+
+export async function getContactFromMongoDB(url) {
+    try {
+        const response = await axios.get(url);
+        console.log('getContactFromUrl', response);
+        return response.data.data;
+    } catch (error) {
+        console.error(`HTTP error! status: ${error.response.status}`);
+    }
+}
 
 export async function getContacts(query) {
     await fakeNetwork(`getContacts:${query}`);

@@ -1,7 +1,9 @@
 import {Outlet, Link,NavLink, useLoaderData, Form, redirect,
   useNavigation, useSubmit,} from "react-router-dom"
-import {getContacts, createContact} from "../contacts"
-import {useEffect} from "react";
+import {getContacts, getContactFromMongoDB, createContact} from "../contacts"
+import React, { useState, useEffect } from 'react';
+
+
 export async function action(){
   const contact = await createContact();
   return redirect(`/contacts/${contact.id}/edit`);
@@ -10,10 +12,25 @@ export async function loader({request}){
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts= await getContacts(q);
+ 
   return {contacts,q};
 }
 export default function Root() {
-  const{contacts,q}= useLoaderData();
+  const apiurl= "http://127.0.0.1:5001/api/contacts";
+  const [contacts, setContacts] = useState([]);
+ 
+  useEffect(() => {
+      getContactFromMongoDB(apiurl)
+          .then(data => {
+              setContacts(data);
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+  }, []);
+  const{q}= useLoaderData();
+  
+  console.log("contacts", contacts);
   const navigation=useNavigation();
   const submit = useSubmit();
 
@@ -67,8 +84,8 @@ export default function Root() {
             {contacts.length ? (
             <ul>
               {contacts.map((contact)=>(
-              <li key ={contact.id}>
-                <NavLink to={`contacts/${contact.id}`}
+              <li key ={contact._id}>
+                <NavLink to={`contacts/${contact._id}`}
                 className={({ isActive, isPending }) =>
                 isActive
                   ? "active"
